@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>HTML Basics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="main">
+      <div id="container">
+        <div id="content" role="main">
+          <!-- TODO: Content goes here -->
+          <header>
+            <a name="home"></a>
+            <img src="./logo.png" alt="EPAM Logo">
+            <h1>HTML BASICS</h1>
+            <nav>
+              <a href="#home">Home</a>
+              <a href="#headings">Headings</a>
+              <a href="#table">Table</a>
+              <a href="#listTypes">Types of lists</a>
+              <a href="#textFormats">Text formats</a>
+              <a href="#blockquotes">Blockquotes</a>
+              <a href="#registration">Registration</a>
+            </nav>
+          </header>
+          <hr>
+          <article>
+            <p><strong>Fructose</strong>, or
+              <strong>fruit sugar</strong>, is a simple <em>ketonic monosaccharide</em> found in many plants, where it
+              is often bonded to glucose to form the disaccharide
+              sucrose.
+              It is one of the three dietary
+              <u>monosaccharides</u>, along with glucose and galactose, that are absorbed directly into blood during
+              digestion.
+              Its formula is C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> and its density is 1.694 g/cm<sup>3</sup> .
+              Fructose was discovered by French chemist
+              <a href="#">Augustin-Pierre Dubrunfaut</a> in
+              <mark>1847</mark>, <s>not in 1846</s>.
+            </p>
+
+            <p>
+              It makes us <strong>strong!</strong> <em>This is emphasized.</em>
+            </p>
+
+            <p>
+              Excessive consumption of fructose (especially from sugar-sweetened beverages) may contribute to insulin
+              resistance, obesity, elevated
+              Low-density lipoprotein <abbr title="Low-density lipoprotein">LDL</abbr> cholesterol and triglycerides,
+              leading to metabolic syndrome.
+              The European Food Safety Authority <abbr title="European Food Safety Authority">EFSA</abbr> stated that
+              fructose may be preferable over sucrose and glucose in
+              sugar-sweetened foods and beverages because of its lower effect on postprandial blood sugar levels, and
+              noted that
+              <em>high intakes of fructose may lead to metabolic complications such as dyslipidaemia, insulin
+                resistance,
+                and increased visceral adiposity</em> (this is a citation).
+            </p>
+          </article>
+          <hr>
+
+          <section>
+            <a name="headings"></a>
+            <p>h1 defines the most important heading. h6 defines the least important heading. Font-size for h1 is the
+              same
+              as font-size for h2, because we have to use only one h1 on the page, and it is commonly used inside header
+            </p>
+
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+            <h6>Heading 6</h6>
+          </section>
+          <hr>
+
+          <section>
+            <a name="table"></a>
+            <h2>Sugar content of selected common plant foods (g/100g)</h2>
+
+            <table border="1">
+              <thead>
+                <tr>
+                  <td>Food item</td>
+                  <td>Free Fructose</td>
+                  <td>Free Glucose</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Apple</td>
+                  <td>5.9</td>
+                  <td>2.4</td>
+                </tr>
+                <tr>
+                  <td>Banana</td>
+                  <td>4.9</td>
+                  <td>5.0</td>
+                </tr>
+                <tr>
+                  <td>Grapes</td>
+                  <td>8.1</td>
+                  <td>7.2</td>
+                </tr>
+                <tr>
+                  <td>Pineapple</td>
+                  <td>2.1</td>
+                  <td>1.7</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <hr>
+          <section>
+            <a name="listTypes"></a>
+            <h3>Unordered Shopping List</h3>
+
+            <ul>
+              <li>Fruits:
+                <ul>
+                  <li>Bananas</li>
+                  <li>Apples</li>
+                  <li>Peaches</li>
+                </ul>
+              </li>
+              <li>Vegetables:
+                <ul>
+                  <li>Carrots</li>
+                  <li>Cucumbers</li>
+                  <li>Beetroot</li>
+                </ul>
+              </li>
+              <li>Milk</li>
+              <li>Butter</li>
+            </ul>
+
+            <h3>Ordered To-do List</h3>
+            <ul type="1">
+              <ol>Wash your hands</ol>
+              <ol>Clean your apartment</ol>
+              <ol>Do your homework
+                <ul type="A">
+                  <ol>Create HTML Page</ol>
+                  <ol>Check all requirements & folder structure</ol>
+                  <ol>Upload to GitHub</ol>
+                </ul>
+              </ol>
+            </ul>
+
+            <h3>Definition List</h3>
+            <dl>
+              <dt>HTML</dt>
+              <dd>HTML is the standard markup language to create Web pages.</dd>
+              <dt>CSS</dt>
+              <dd>CSS describes how HTML elements are to be displayed.</dd>
+              <dt>JavaScript</dt>
+              <dd>JavaScript is a scripting languages, primarily used on the Web.</dd>
+            </dl>
+
+          </section>
+          <hr>
+          <section>
+            <a name="textFormats"></a>
+            <h2>Text formats</h2>
+
+            <h3>Preformatted Text</h3>
+            <pre>
+Text in a <b>pre</b> element
+is displayed in a fixed-width
+font, and it preserves
+both           <b>spaces</b> and
+<b>line breaks</b>
+          
+            </pre>
+
+            <h3>This is code</h3>
+            <pre>
+              <code>
+.flex {
+  display: flex;
+  justify-content: justify;
+  aliign-items: center;
+}
+              </code>
+            </pre>
+
+            <a name="blockquotes"></a>
+            <h3>Blockquotes</h3>
+            <p>Let’s keep it simple. Italics are good to help set it off from the body text. Be sure to style the
+              citation.</p>
+
+            <blockquote> "So if you want to go fast, if you want to get done quickly, if you want your code to be easy
+              to write, make
+              it easy to read."
+
+              <p><a href="#">Robert C. Martin (Uncle Bob)</a></p>
+            </blockquote>
+          </section>
+          <hr>
+
+          <section>
+            <a name="registration"></a>
+            <form action="#">
+              <fieldset>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password"><br>
+              </fieldset>
+              <label for="progLangs">Select Programming Language</label>
+
+              <select id="progLangs">
+                <option value="js">JavaScript</option>
+                <option value="net">.Net</option>
+                <option value="java">Java</option>
+              </select><br><br>
+
+              <textarea name="" id="" cols="23" rows="4"></textarea><br>
+              <button type="submit">Submit</button>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

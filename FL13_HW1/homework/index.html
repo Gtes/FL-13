@@ -193,7 +193,7 @@ both           <b>spaces</b> and
               "So if you want to go fast, if you want to get done quickly, if you want your code to be easy to write, 
               make it easy to read."
 
-              <p><cite><a href="#">Robert C. Martin (Uncle Bob)</a></cite></p>
+              <p><a href="#">Robert C. Martin (Uncle Bob)</a></p>
             </blockquote>
           </section>
           <hr>
@@ -204,20 +204,33 @@ both           <b>spaces</b> and
               <fieldset>
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name"><br>
+              </fieldset>
+              
+              <fieldset>
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email"><br>
+              </fieldset>
+              
+              <fieldset>
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password"><br>
               </fieldset>
-              <label for="progLangs">Select Programming Language</label>
 
-              <select id="progLangs">
-                <option value="js">JavaScript</option>
-                <option value="net">.Net</option>
-                <option value="java">Java</option>
-              </select><br><br>
+              <fieldset>
+                <label for="progLangs">Select Programming Language</label>
 
-              <textarea name="description" id="formDescription" cols="23" rows="4"></textarea><br>
+                <select id="progLangs">
+                  <option value="js">JavaScript</option>
+                  <option value="net">.Net</option>
+                  <option value="java">Java</option>
+                </select>
+              </fieldset>
+              <br>
+
+              <fieldset>
+                <textarea name="description" id="formDescription" cols="23" rows="4"></textarea>
+              </fieldset>
+              
               <button type="submit">Submit</button>
             </form>
           </section>

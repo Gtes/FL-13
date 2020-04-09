@@ -1,0 +1,256 @@
+@media print {
+    .container {
+        background: #FFFFFF;
+    }
+
+    .tm-main-content img {
+        display: none;
+    }
+
+    #home img {
+        display: block;
+    }
+
+    #about {
+        display: none;
+    }
+
+    #ideas .carousel-indicators {
+        display: none;
+    }
+
+    .tm-sidebar {
+        display: none;
+    }
+
+    .tm-main-content {
+        padding-top: 0;
+    }
+
+    .blocks>.tm-content-box {
+        display: none;
+    }
+
+    .tm-content-box {
+        margin-bottom: 10px;
+    }
+
+    #contact {
+        display: none;
+    }
+
+    .tm-banner {
+        padding-bottom: 0;
+    }
+
+    .tm-team-description-container {
+        max-width: 100%;
+    }
+
+    .padding-medium {
+        padding: 0;
+    }
+
+    .padding-medium {
+        text-align: center;
+    }
+
+    .padding-medium>ol {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        max-width: 300px;
+        align-content: center;
+    }
+
+    .padding-medium>ol>li:nth-child(odd)>a {
+        text-align: left;
+    }
+
+    .padding-medium>ol>li:nth-child(even)>a {
+        text-align: right;
+    }
+
+    .tm-section-description {
+        text-align: center;
+        font-style: italic;
+    }
+
+    .carousel {
+        padding-bottom: 0;
+        padding-top: 10px;
+    }
+}
+
+@media all {
+    .tm-banner {
+        background: linear-gradient(lightblue, burlywood);
+    }
+
+    .tm-banner-inner {
+        background: #FFFFFF;
+    }
+
+    @keyframes rotate-text {
+        0% {
+            transform: rotate(0);
+        }
+
+        50% {
+            transform: rotate(45deg);
+        }
+
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    .tm-banner-text {
+        text-shadow: lightblue 0px 8px 1px, lightblue 0px 3px;
+        letter-spacing: 8px;
+        animation: rotate-text 10s linear infinite both;
+    }
+
+    .tm-nav-item-link:hover {
+        background: lightblue;
+        color: #FFFFFF;
+    }
+
+    .tm-main-nav,
+    section,
+    #home {
+        box-shadow: 0px 0px 15px 0px rgba(61, 55, 61, 0.7);
+    }
+
+    .flex-2-col {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .flex-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .tm-section-title {
+        text-align: center;
+    }
+
+    .tm-section-description {
+        font-style: italic;
+        text-indent: 1em;
+    }
+
+    h2+.tm-section-description {
+        line-height: 1.8em;
+    }
+
+    #about>ul>li:hover>h2 {
+        background: lightblue;
+        color: #FFFFFF;
+        font-weight: bold;
+    }
+
+    .padding-medium>h2 {
+        color: lightblue;
+        font-weight: 300;
+        text-align: center;
+    }
+
+    .padding-medium>ol {
+        list-style-type: decimal-leading-zero;
+    }
+
+    .padding-medium>ol li:nth-child(1)::after,
+    .padding-medium>ol li:nth-child(3)::after {
+        content: 'New';
+        position: relative;
+        top: -10px;
+        font-size: 0.7em;
+        color: #FF0000;
+        font-weight: bold;
+    }
+
+    .padding-medium>ol li a:hover,
+    .padding-medium>ol li a:hover::before {
+        color: #FF0000;
+        font-weight: bold;
+        content: '>';
+    }
+
+    section::before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 55px 55px 0 0;
+        border-color: lightskyblue transparent transparent transparent;
+        position: absolute;
+    }
+
+    .blocks li {
+        padding: 12px;
+    }
+
+    .blocks li p {
+        font-style: italic;
+    }
+
+    .blocks li p::first-letter {
+        font-weight: bold;
+    }
+
+    .blocks li:nth-child(even) {
+        background: lightskyblue;
+        color: #FFFFFF;
+    }
+
+    #contact>.tm-section-title {
+        text-align: right;
+    }
+
+    .form-control {
+        border: 0;
+        border-bottom: 1px solid lightblue;
+    }
+
+    .form-control:focus,
+    #contact_subject:focus,
+    .form-control:focus::placeholder {
+        box-shadow: none;
+        background: #76cdd7;
+        color: #FFFFFF;
+    }
+
+    #contact_subject {
+        background: url(../img/email-icon.png) no-repeat right;
+        background-size: contain;
+    }
+
+    #contact_message {
+        border: 1px solid #ccc;
+        border-radius: .25rem;
+        color: #000000;
+    }
+
+    #contact_message:focus,
+    #contact_message:focus::placeholder{
+        background: #FFFFFF;
+    }
+
+    .submit-btn {
+        background: none;
+        color: lightblue;
+        border-radius: 0;
+        border: 1px solid lightblue;
+        float: right;
+    }
+
+    .submit-btn:hover {
+        background: #76cdd7;
+        border: 1px solid #76cdd7;
+    }
+}

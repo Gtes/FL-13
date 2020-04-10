@@ -86,7 +86,7 @@
 
 @media all {
     .tm-banner {
-        background: linear-gradient(lightblue, burlywood);
+        background: linear-gradient(lightskyblue, burlywood);
     }
 
     .tm-banner-inner {
@@ -108,13 +108,13 @@
     }
 
     .tm-banner-text {
-        text-shadow: lightblue 0px 8px 1px, lightblue 0px 3px;
+        text-shadow: lightskyblue 0px 8px 1px, lightskyblue 0px 3px;
         letter-spacing: 8px;
         animation: rotate-text 10s linear infinite both;
     }
 
     .tm-nav-item-link:hover {
-        background: lightblue;
+        background: lightskyblue;
         color: #FFFFFF;
     }
 
@@ -149,13 +149,13 @@
     }
 
     #about>ul>li:hover>h2 {
-        background: lightblue;
+        background: lightskyblue;
         color: #FFFFFF;
         font-weight: bold;
     }
 
     .padding-medium>h2 {
-        color: lightblue;
+        color: lightskyblue;
         font-weight: 300;
         text-align: center;
     }
@@ -214,7 +214,7 @@
 
     .form-control {
         border: 0;
-        border-bottom: 1px solid lightblue;
+        border-bottom: 1px solid lightskyblue;
     }
 
     .form-control:focus,
@@ -243,9 +243,9 @@
 
     .submit-btn {
         background: none;
-        color: lightblue;
+        color: lightskyblue;
         border-radius: 0;
-        border: 1px solid lightblue;
+        border: 1px solid lightskyblue;
         float: right;
     }
 

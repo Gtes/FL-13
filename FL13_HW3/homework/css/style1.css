@@ -66,6 +66,7 @@ body {
       left: 0;
       height: 90px;
       width: 373px;
+      background: #0094BA;
       z-index: -1; }
   .header_text {
     margin-top: 75px;
@@ -119,6 +120,7 @@ body {
       left: 285px;
       height: 55px;
       width: 260px;
+      background: #0094BA;
       z-index: -1; }
   .section_card_wrap {
     display: flex;
@@ -174,6 +176,7 @@ body {
         left: 150px;
         height: 38px;
         width: 80px;
+        background: #0094BA;
         z-index: -1; }
     .section_banner_text {
       font-size: 1.2em;

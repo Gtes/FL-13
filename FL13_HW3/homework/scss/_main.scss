@@ -47,8 +47,8 @@
 
 }
 
-@mixin button ($bacground:$button-bg, $color:$main-bg) {
-    background: colors('button-bg');
+@mixin button ($background:colors('button-bg'), $color:colors('main-bg')) {
+    background: $background;
     border: none;
     cursor: pointer;
     padding: 22px 55px;
@@ -89,7 +89,7 @@ body {
 
 
 .landing-logo {
-    @include logo($header-font-color, 25px);
+    @include logo(colors('header-font-color'), 25px);
 }
 
 

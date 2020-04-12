@@ -57,6 +57,7 @@
     line-height: 1;
     color: $color;
     min-width: 180px;
+    max-height: 65px;
 }
 
 @mixin link($color, $opacity: 1) {
@@ -176,7 +177,7 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin: 60px 5% 0 5%;
+        margin: 60px 100px 0 100px;
     }
 
     &_card {

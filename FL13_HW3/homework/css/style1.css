@@ -73,7 +73,7 @@ body {
     margin-top: 75px;
     font-size: 1.2em;
     line-height: 2em;
-    max-width: 815px;
+    white-space: pre-line;
     text-align: left;
     font-weight: 300;
     margin-bottom: 90px; }

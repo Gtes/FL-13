@@ -1,0 +1,265 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Merriweather', serif;
+}
+
+.main-head {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    padding: 3.5rem 0 3.5rem 0;
+}
+
+.logo {
+    /* grid-area: logo; */
+    font-family: 'Merriweather', serif;
+    justify-self: center;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 1rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.main-nav {
+    /* grid-area: nav; */
+    justify-self: center;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.main-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.main-nav li {
+    margin-right: 4.5rem;
+}
+
+.main-nav li:last-child {
+    margin-right: 0;
+}
+
+.main-nav a {
+    text-decoration: none;
+}
+
+.main-nav a:visited {
+    color: inherit;
+}
+
+.main-nav a:hover {
+    color: #C0BA9E;
+}
+
+.hero-image {
+    grid-area: hero;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url(../img/home-bg.jpg) no-repeat;
+    background-position: center top;
+    background-size: cover;
+    display: grid;
+}
+
+.hero-text {
+    display: grid;
+    justify-self: center;
+    align-self: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    font-family: 'Merriweather', serif;
+}
+
+.hero-text * {
+    margin: 0;
+    padding: 0;
+}
+
+.hero-header {
+    text-align: center;
+    font-weight: 900;
+    font-size: 5rem;
+    color: #FFFFFF;
+}
+
+.hero-sub-header {
+    text-align: center;
+    margin-top: 3.7rem;
+    color: rgba(255, 197, 80, 0.973);
+    font-size: 1.1rem;
+}
+
+.discover-btn {
+    justify-self: center;
+    align-self: center;
+    background-color: #FFFFFF;
+    color: rgba(0, 0, 0, 0.8);
+    padding: 1.8rem 2.5rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: .9rem;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
+    margin-top: 5rem;
+}
+
+.content {
+    grid-area: content;
+    justify-self: center;
+    max-width: 94rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 12rem;
+}
+
+.article-card {
+    margin-top: 15rem;
+}
+
+.article-card:nth-child(1) {
+    margin-top: 0;
+}
+
+.article-image {
+    margin: 0;
+    padding: 0;
+}
+
+.article-image img {
+    max-width: 100%;
+}
+
+.article-content-meta {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 1.7rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.article-content-meta * {
+    align-self: center;
+}
+
+.author-info {
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    column-gap: .8rem;
+}
+
+.author-name {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.author-name:visited {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.author-avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+}
+
+.author-avatar img {
+    max-width: 100%;
+}
+
+.comment-icon {
+    margin: 0 0.5rem 0 0;
+}
+
+.article-text {
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 2rem;
+    padding-bottom: 0;
+}
+
+.article-continue {
+    display: inline-block;
+    background-color: #FFFFFF;
+    color: rgba(0, 0, 0, 0.5);
+    padding: 1.8rem 2.5rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 1.4rem;
+    letter-spacing: 0.15rem;
+    font-weight: 700;
+    margin-top: 4rem;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.article-continue:visited {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.wrap-footer {
+    grid-area: footer;
+    display: grid;
+    background-color: #000000;
+    margin-top: 15rem;
+    padding: 10rem 0 9rem 0;
+}
+
+.main-footer {
+    color: #FFFFFF;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 15rem;
+    justify-self: center;
+    max-width: 94rem;
+}
+
+.about-info h2 {
+    color: #FFFFFF;
+}
+
+.about-info p,
+.contact-info p {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-info h2 {
+    color: #FFFFFF;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "header"
+        "hero"
+        "content"
+        "footer";
+}
+
+@media (max-width: 940px) {
+    .content {
+        padding: 0 .5rem 0 .5rem;
+    }
+
+    .main-footer {
+        padding: 0 .5rem 0 .5rem;
+    }
+}

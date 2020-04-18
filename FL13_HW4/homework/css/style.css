@@ -23,13 +23,12 @@ h3 {
 .main-head {
     grid-area: header;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    row-gap: 2rem;
     padding: 3.5rem 0 3.5rem 0;
 }
 
 .logo {
-    /* grid-area: logo; */
     font-family: 'Merriweather', serif;
     justify-self: center;
     text-transform: uppercase;
@@ -109,7 +108,8 @@ h3 {
     font-size: 1.1rem;
 }
 
-.discover-btn {
+.discover-btn,
+.discover-btn:visited {
     justify-self: center;
     align-self: center;
     background-color: #FFFFFF;
@@ -123,6 +123,8 @@ h3 {
     letter-spacing: 0.15rem;
     margin-top: 5rem;
 }
+
+
 
 .content {
     grid-area: content;
@@ -215,22 +217,30 @@ h3 {
     color: rgba(0, 0, 0, 0.5);
 }
 
-.wrap-footer {
+.footer-bg {
     grid-area: footer;
     display: grid;
     background-color: #000000;
     margin-top: 15rem;
+}
+
+.wrap-footer {
+    grid-template-columns: 1fr;
     padding: 10rem 0 9rem 0;
+    max-width: 94rem;
+    justify-self: center;
+
 }
 
 .main-footer {
+    background-color: #000000;
     color: #FFFFFF;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     column-gap: 15rem;
-    justify-self: center;
-    max-width: 94rem;
+    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
 }
+
+
 
 .about-info h2 {
     color: #FFFFFF;
@@ -248,7 +258,8 @@ h3 {
 .wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-areas: "header"
+    grid-template-areas:
+        "header"
         "hero"
         "content"
         "footer";

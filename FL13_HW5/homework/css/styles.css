@@ -78,7 +78,7 @@ figure {
 .logo {
   color: var(--link);
   font-size: 3rem;
-  font-weight: lighter;
+  font-weight: 300;
   align-self: center;
 }
 
@@ -200,21 +200,21 @@ figure {
 
 .article-info-text h2,
 .news-card h2 {
-  font-weight: lighter;
+  font-weight: 300;
   font-size: 2.5rem;
   margin-top: 0;
 }
 
 .article-info-text p,
 .news-card p {
-  font-weight: lighter;
+  font-weight: 300;
   font-size: 1rem;
   line-height: 2rem;
 }
 
 .article-info-date {
   padding: 2.3rem 1.6rem 0 1.6rem;
-  font-weight: lighter;
+  font-weight: 300;
 }
 
 .date-number {
@@ -266,7 +266,7 @@ figure {
 .news-learn-more:visited {
   text-decoration: none;
   color: #000;
-  font-weight: lighter;
+  font-weight: 300;
   padding: .8rem;
   border: 1px solid rgba(0, 0, 0, 0.5);
   margin: 2rem 2rem 2rem 2rem;
@@ -285,7 +285,7 @@ figure {
   display: grid;
   grid-template-columns: 1fr 1fr;
   color: var(--link);
-  font-weight: lighter;
+  font-weight: 300;
   background: var(--bg-color--medium);
   padding: 1rem 2rem 1rem 2rem;
   margin-top: 2rem;

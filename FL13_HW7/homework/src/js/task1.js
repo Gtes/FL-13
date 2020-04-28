@@ -17,14 +17,14 @@ function isUserExist(username) {
 }
 
 function checkUserByUsername(username) {
-    const MIN_USERNAME_LENGTH = 3;
+    const MIN_USERNAME_LENGTH = 4;
 
     switch (true) {
         case isEmptyOrWhitespcesOrNull(username):
             alert(`Canceled`)
             return false;
 
-        case username.length <= MIN_USERNAME_LENGTH:
+        case username.length < MIN_USERNAME_LENGTH:
             alert(`I don't know any users having name length less than 4 symbols`);
             return false;
 

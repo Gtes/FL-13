@@ -44,15 +44,14 @@ const NUMBER_RANGE = {
 
 const MAX_PRIZE = 100;
 
-function game(gameNumber = 1, attemptsLeft = MAX_NUMBER_OF_ATTEMPTS, maxPrize, pastPrize = 0) {
+function game(gameNumber = 1, attemptsLeft = MAX_NUMBER_OF_ATTEMPTS, maxPrize = MAX_PRIZE, pastPrize = 0) {
 
     let currentPrize = pastPrize;
-    let curetntPosiblePrize = MAX_PRIZE * gameNumber;
+    let curetntPosiblePrize = maxPrize;
 
     console.log(`maxPrize = ${maxPrize}`)
 
     const randomNumber = getRandom(NUMBER_RANGE.min * gameNumber, NUMBER_RANGE.max * gameNumber);
-    // const randomNumber = 2;
 
     if (!attemptsLeft) {
         currentPrize = 0;
@@ -65,9 +64,9 @@ function game(gameNumber = 1, attemptsLeft = MAX_NUMBER_OF_ATTEMPTS, maxPrize, p
             NUMBER_RANGE.max * gameNumber, 
             attemptsLeft, 
             pastPrize, 
-            MAX_PRIZE * gameNumber);
+            curetntPosiblePrize);
 
-        if (Number(userAnswer) === randomNumber) {
+        if (parseInt(userAnswer) === randomNumber) {
             let lastPrize = curetntPosiblePrize;
 
             let finalPrize = currentPrize + lastPrize;

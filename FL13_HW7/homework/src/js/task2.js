@@ -51,8 +51,6 @@ function game(gameNumber = 1, attemptsLeft = MAX_NUMBER_OF_ATTEMPTS, maxPrize, p
 
     console.log(`maxPrize = ${maxPrize}`)
 
-
-
     const randomNumber = getRandom(NUMBER_RANGE.min * gameNumber, NUMBER_RANGE.max * gameNumber);
     // const randomNumber = 2;
 
@@ -60,13 +58,16 @@ function game(gameNumber = 1, attemptsLeft = MAX_NUMBER_OF_ATTEMPTS, maxPrize, p
         currentPrize = 0;
         alert(`Thank you for your participation. Your prize is: ${currentPrize + pastPrize} $`)
 
-        confirm(`Do you want to restart?`) ? game() :  false;
-
+        confirm(`Do you want to restart?`) ? game() : false;
 
     } else {
-        let userAnswer = getAnswer(NUMBER_RANGE.min * gameNumber, NUMBER_RANGE.max * gameNumber, attemptsLeft, pastPrize, MAX_PRIZE * gameNumber);
+        let userAnswer = getAnswer(NUMBER_RANGE.min * gameNumber, 
+            NUMBER_RANGE.max * gameNumber, 
+            attemptsLeft, 
+            pastPrize, 
+            MAX_PRIZE * gameNumber);
 
-        if (userAnswer == randomNumber) {
+        if (Number(userAnswer) === randomNumber) {
             let lastPrize = curetntPosiblePrize;
 
             let finalPrize = currentPrize + lastPrize;

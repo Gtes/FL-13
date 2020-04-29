@@ -1,5 +1,5 @@
 function letterCount(string, letter) {
-    return string.toLowerCase().split(`${letter}`).length - 1;
+    return string.toLowerCase().split(``).filter((value) => value === letter).length;
 }
 
 console.log(letterCount("Maggy", "g"));

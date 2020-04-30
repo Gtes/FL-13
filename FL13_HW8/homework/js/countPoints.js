@@ -1,7 +1,7 @@
 function countPoints(scores) {
     return scores.reduce((sum, score) => {
         let scoreItem = score.split(':');
-        return sum + (scoreItem[0] > scoreItem[1] ? 3 : scoreItem[0] === scoreItem[1])
+        return sum + (Number(scoreItem[0]) > Number(scoreItem[1]) ? 3 : scoreItem[0] === scoreItem[1])
     }, 0)
 }
 

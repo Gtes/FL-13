@@ -19,7 +19,7 @@ function mapArray(arr, calback) {
     let result = [];
 
     executeforEach(arr, function (el) {
-        result.push(calback(Number(el)));
+        result.push(calback(parseInt(el)));
     })
 
     return result;

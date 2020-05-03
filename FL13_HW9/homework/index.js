@@ -1,9 +1,9 @@
 function convert(...args) {
     for (let i in args) {
         if (typeof args[i] === 'string') {
-            args[i] = Number(args[i])
+            args[i] = Number(args[i]);
         } else {
-            args[i] = String(args[i])
+            args[i] = String(args[i]);
         }
     }
     return args;
@@ -11,28 +11,28 @@ function convert(...args) {
 
 function executeforEach(arr, calback) {
     for (let i of arr) {
-        calback(i)
+        calback(i);
     }
 }
 
 function mapArray(arr, calback) {
-    let result = []
+    let result = [];
 
     executeforEach(arr, function (el) {
         result.push(calback(Number(el)));
     })
 
-    return result
+    return result;
 }
 
 function filterArray(arr, calback) {
-    let result = []
+    const result = [];
 
     executeforEach(arr, function (el) {
-        calback(el) && result.push(el)
+        calback(el) && result.push(el);
     })
 
-    return result
+    return result;
 }
 
 function containsValue(arr, target) {
@@ -43,44 +43,35 @@ function containsValue(arr, target) {
             result = true;
         }
     })
-    return result
+
+    return result;
 }
 
 function flipOver(string) {
-    let result = ''
+    let result = '';
 
     for (let i = 0; i < string.length; i += 1) {
-        result += string[string.length - 1 - i]
+        result += string[string.length - 1 - i];
     }
 
-    return result
+    return result;
 }
 
 function makeListFromRange(arr) {
     const startRange = arr[0];
     const endRange = arr[1];
-    const result = []
+    const result = [];
 
     for (let i = startRange; i <= endRange; i += 1) {
         result.push(i);
     }
 
     return result;
-
 }
-
-const fruits = [{
-        name: 'apple',
-        weight: 0.5
-    },
-    {
-        name: 'pineapple',
-        weight: 2
-    }
-]
 
 function getArrayOfKeys(obj, keyName) {
     const result = [];
+
     executeforEach(obj, function (el) {
         result.push(el[keyName]);
     })
@@ -98,28 +89,27 @@ function substitute(arr) {
 }
 
 function getPastDay(date, daysAgo) {
-    const copyDate = new Date(date)
+    const copyDate = new Date(date);
 
     const pastDate = new Date(
-        copyDate.setDate(copyDate.getDate() - daysAgo)
-    ).getDate()
+        copyDate.setDate(copyDate.getDate() - daysAgo)).getDate();
 
-    return pastDate
+    return pastDate;
 }
 
 function formatDate(date) {
-    const formattedDate = new Date(date)
+    const initialDate = new Date(date);
 
     const parseDate = {
-        year: formattedDate.getFullYear(),
-        day: (formattedDate.getDate() < 10 ? '0' : '') + formattedDate.getDate(),
-        month: (formattedDate.getMonth() + 1 < 10 ? '0' : '') +
-            (formattedDate.getMonth() + 1),
-        hour: (formattedDate.getHours() < 10 ? '0' : '') + formattedDate.getHours(),
-        minutes: (formattedDate.getMinutes() < 10 ? '0' : '') + formattedDate.getMinutes()
-    }
+        year: initialDate.getFullYear(),
+        day: (initialDate.getDate() < 10 ? '0' : '') + initialDate.getDate(),
+        month: (initialDate.getMonth() + 1 < 10 ? '0' : '') +
+            (initialDate.getMonth() + 1),
+        hour: (initialDate.getHours() < 10 ? '0' : '') + initialDate.getHours(),
+        minutes: (initialDate.getMinutes() < 10 ? '0' : '') + initialDate.getMinutes()
+    };
 
-    const newDate = `${parseDate.year}/${parseDate.month}/${parseDate.day} ${parseDate.hour}:${parseDate.minutes}`
+    const formattedDate = `${parseDate.year}/${parseDate.month}/${parseDate.day} ${parseDate.hour}:${parseDate.minutes}`;
 
-    return newDate
+    return formattedDate;
 }

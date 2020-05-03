@@ -107,7 +107,10 @@ function formatDate(date) {
         minutes: (initialDate.getMinutes() < 10 ? '0' : '') + initialDate.getMinutes()
     };
 
-    const formattedDate = `${parseDate.year}/${parseDate.month}/${parseDate.day} ${parseDate.hour}:${parseDate.minutes}`;
+    const formattedDate = parseDate.year + '/' +
+        parseDate.month + '/' +
+        parseDate.day + ' ' +
+        parseDate.hour + ':' + parseDate.minutes;
 
     return formattedDate;
 }

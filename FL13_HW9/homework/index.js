@@ -89,10 +89,9 @@ function substitute(arr) {
 }
 
 function getPastDay(date, daysAgo) {
-    const copyDate = new Date(date);
+    const initialDate = new Date(date);
 
-    const pastDate = new Date(
-        copyDate.setDate(copyDate.getDate() - daysAgo)).getDate();
+    const pastDate = new Date(initialDate.setDate(initialDate.getDate() - daysAgo)).getDate();
 
     return pastDate;
 }
@@ -103,8 +102,7 @@ function formatDate(date) {
     const parseDate = {
         year: initialDate.getFullYear(),
         day: (initialDate.getDate() < 10 ? '0' : '') + initialDate.getDate(),
-        month: (initialDate.getMonth() + 1 < 10 ? '0' : '') +
-            (initialDate.getMonth() + 1),
+        month: (initialDate.getMonth() + 1 < 10 ? '0' : '') + (initialDate.getMonth() + 1),
         hour: (initialDate.getHours() < 10 ? '0' : '') + initialDate.getHours(),
         minutes: (initialDate.getMinutes() < 10 ? '0' : '') + initialDate.getMinutes()
     };

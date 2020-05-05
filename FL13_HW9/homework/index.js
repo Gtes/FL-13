@@ -58,9 +58,18 @@ function flipOver(string) {
 }
 
 function makeListFromRange(arr) {
-    const startRange = arr[0];
-    const endRange = arr[1];
+    let startRange = arr[0];
+    let endRange = arr[1];
     const result = [];
+
+    if (startRange === endRange) {
+        return [startRange]
+    }
+
+    if (startRange > endRange) {
+        startRange = arr[1]
+        endRange = arr[0]
+    }
 
     for (let i = startRange; i <= endRange; i += 1) {
         result.push(i);

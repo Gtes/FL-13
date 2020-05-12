@@ -59,31 +59,28 @@ const data = [{
 ];
 
 const rootNode = document.getElementById('root');
-
 const contextMenu = `<ul class="right-click-menu"><li class="rename">Rename</li><li class="delete">Delete</li></ul>`
 
+let mytarget;
 
 rootNode.addEventListener('click', eventhandler);
 rootNode.addEventListener('contextmenu', contextMenufunc);
 document.addEventListener('click', onMouseDown);
 
 
-function menuClick(e) {
-  // console.log(e.target);
-}
 
 function renderContextMenu(x, y) {
-  const div = rootNode.querySelector(".right-click-menu")
+  const div = rootNode.querySelector('.right-click-menu')
 
   div.style.left = x + 'px';
   div.style.top = y + 'px';
 
-  div.classList.add("show-menu")
+  div.classList.add('show-menu')
 
 }
 
 function hideMenu() {
-  rootNode.querySelector(".right-click-menu").classList.remove('show-menu');
+  rootNode.querySelector('.right-click-menu').classList.remove('show-menu');
 }
 
 function onMouseDown(e) {
@@ -94,54 +91,65 @@ function onMouseDown(e) {
 }
 
 function contextMenufunc(e) {
-  renderContextMenu(e.pageX, e.pageY)
-  // console.log('contextMenufunc')
-  // console.log(e.target)
+  console.log(e.target)
+  if(e.target.classList.contains('folder') || e.target.classList.contains('file')){
+    rootNode.querySelector('.right-click-menu').style.pointerEvents = 'auto';
+  } else{
+    rootNode.querySelector('.right-click-menu').style.pointerEvents = 'none';
+  }
 
-  // if (e.target.tagName == 'INPUT') {
-  // e.target.addEventListener('blur', () => e.target.disabled = true);
-  // e.target.disabled = false;
-  // e.target.focus()
-  // }
+
+  renderContextMenu(e.pageX, e.pageY)
   e.preventDefault();
   mytarget = e.target;
-  // return e.target
 
 }
 
-let mytarget;
 
 function eventhandler(e) {
 
-  console.log(mytarget)
-
-
-
-  console.log(e.target)
-
-  if (e.target.classList.contains("rename")) {
-    mytarget.addEventListener('blur', () => e.target.disabled = true);
-    mytarget.disabled = false;
+  if (e.target.classList.contains('rename')) {
     mytarget.focus()
-    const valueDot = mytarget.value.indexOf('.');
-    mytarget.setSelectionRange(0, valueDot);
+
+    mytarget.innerHTML = `<input type="text" value="${mytarget.textContent}" >`
+
+    mytarget.querySelector('input').addEventListener('blur', () => {
+      mytarget.innerHTML = mytarget.querySelector('input').value
+
+    });
+
+    mytarget.querySelector('input').focus()
+
+    const valueDot = mytarget.querySelector('input').value;
+
+    mytarget.querySelector('input').setSelectionRange(0, valueDot.indexOf('.'));
   }
 
-  if (e.target.classList.contains("delete")) {
-    // mytarget.parentNode.parentNode.parentNode.removeChild(mytarget.parentNode.parentNode);
+  if (e.target.classList.contains('delete')) {
+    const parrentFolder = mytarget.parentNode.parentNode.parentNode
+
+    mytarget.parentNode.parentNode.removeChild(mytarget.parentNode);
+
+    if(!parrentFolder.querySelector('ul').hasChildNodes()){
+      parrentFolder.querySelector('ul').innerHTML = `<li><span class="test">ahahahhaha</span></li>`
+    } else{
+      console.log('no')
+    }
   }
 
 
-  if (e.target.querySelector('ul')) {
+  if (e.target.parentNode.querySelector('ul')) {
     switch (true) {
-      case e.target.querySelector('ul').classList.contains("folder-hidde"):
-        e.target.querySelector('ul').classList.remove("folder-hidde")
+      case e.target.parentNode.querySelector('ul').classList.contains('folder-hidde'):
+        e.target.parentNode.querySelector('ul').classList.remove('folder-hidde')
         break;
 
-      case e.target.classList.contains("folder"):
-        e.target.querySelector('ul').classList.add("folder-hidde")
+      case e.target.classList.contains('folder'):
+        e.target.parentNode.querySelector('ul').classList.add('folder-hidde')
         break;
 
+      default:
+        '';
     }
   }
 }
@@ -155,9 +163,6 @@ function createTreeText(obj) {
   let li = '';
   let ul;
 
-  let _timer;
-  _timer = Date.now();
-
   const drawFolderIcon = () => {
     return `<i class="material-icons">folder</i>`
   }
@@ -167,7 +172,7 @@ function createTreeText(obj) {
   }
 
   const drawEmptyFolder = () => {
-    return `<ul><li>No files</ul></li>`
+    return `<ul><li><span>No files</span></ul></li>`
   }
 
   const addClass = (className) => {
@@ -175,15 +180,14 @@ function createTreeText(obj) {
   }
 
   for (let key of obj) {
-    // console.log(key.children.length)
     if (key.folder && key.children && key.children.length === 0) {
-      li += `<li class="${addClass('folder')}">` + `${ drawFolderIcon() 
-        + `<input type="text" value="${key.title}" disabled>` }` +
+      li += `<li>` +
+        `${ drawFolderIcon()} ${`<span class="${addClass('folder')}">${key.title}</span>`}` +
         drawEmptyFolder() + '</li>'
     } else {
-      li += `<li class="${key.folder? addClass('folder'):addClass('file')}">` +
-        `${key.folder ? drawFolderIcon() : drawFileIcon()}` +
-        `<input type="text" value="${key.title}" disabled>` +
+      li += `<li>` +
+        `${key.folder ? drawFolderIcon() : drawFileIcon()} 
+          <span class="${key.folder? addClass('folder'):addClass('file')}">${key.title}</span>` +
         `${key.children ? createTreeText(key.children) : ''}` +
         '</li>';
     }
@@ -191,11 +195,6 @@ function createTreeText(obj) {
 
   ul = '<ul>' + li + '</ul>'
 
-
-
-  if (Date.now() > _timer + 3000) {
-    throw 'Execution TIMEOUT';
-  }
   return ul;
 }
 

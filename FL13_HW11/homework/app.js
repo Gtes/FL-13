@@ -78,7 +78,6 @@ function onMouseDown(e) {
 
   if (!mymenu) {
     hideMenu();
-
   }
 }
 
@@ -105,28 +104,26 @@ function contextMenufunc(e) {
 function eventhandler(e) {
 
   if (e.target.classList.contains('rename')) {
-    mytarget.classList.add('hover');
+    mytarget.classList.add('hover-rename');
     mytarget.focus()
-
-    // let mytargetType mytarget.querySelector('i'))
 
     const drawIcon = (elem) => {
       return elem.classList.contains('folder') ? drawFolderIcon() : drawFileIcon()
     }
 
-    console.log(mytarget.childNodes)
     mytarget.innerHTML = `${drawIcon(mytarget)}` +
       `<input type="text" value="${mytarget.childNodes[mytarget.childNodes.length-1].nodeValue}" class="rename-input" >`
 
     mytarget.querySelector('input').addEventListener('blur', () => {
-      mytarget.innerHTML = `${drawIcon(mytarget)}
-      ${mytarget.querySelector('input').value}`;
+      mytarget.innerHTML = `${drawIcon(mytarget)}${mytarget.querySelector('input').value}`;
+      mytarget.classList.remove('hover-rename');
     });
 
     mytarget.querySelector('input').addEventListener('keydown', (e) => {
       const returnKeyCode = 13;
       if (e.keyCode === returnKeyCode) {
-        mytarget.innerHTML = mytarget.querySelector('input').value;
+        mytarget.innerHTML = `${drawIcon(mytarget)}${mytarget.querySelector('input').value}`;
+        mytarget.classList.remove('hover-rename');
       }
     });
 
@@ -204,7 +201,7 @@ function createTreeText(obj) {
     } else {
       li += `<li>` +
         `<span class="${key.folder? addClass('folder'):addClass('file')}">` +
-        `${key.folder ? drawFolderIcon() : drawFileIcon()} ${key.title}</span>` +
+        `${key.folder ? drawFolderIcon() : drawFileIcon()}${key.title}</span>` +
         `${key.children ? createTreeText(key.children) : ''}` +
         '</li>';
     }

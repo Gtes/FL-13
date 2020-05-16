@@ -8,7 +8,6 @@
 }
 
 .book-list-item {
-    /* display: block; */
     text-decoration: none;
     color: black;
 }
@@ -30,12 +29,6 @@
 
 .add-mode .formButtons {
     grid-column-start: 1;
-
-}
-
-.bookCoverImage {
-    /* display: grid;
-    justify-items: center; */
 
 }
 

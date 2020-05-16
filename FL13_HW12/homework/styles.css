@@ -1,13 +1,106 @@
-.book-image{
-    width: 200px;
+#root {
+    display: flex;
+    flex-direction: row;
 }
 
-.book-list-item{
+#book-details {
+    margin-left: 20px;
+}
+
+.book-list-item {
     /* display: block; */
     text-decoration: none;
     color: black;
 }
 
-.book-list-item:visited{
+.book-list-item:visited {
     color: black;
+}
+
+.book-form {
+    display: grid;
+    grid-template-columns: min-content auto;
+    column-gap: 20px;
+    width: 600px;
+}
+
+.add-mode {
+    grid-template-columns: 1fr;
+}
+
+.add-mode .formButtons {
+    grid-column-start: 1;
+
+}
+
+.bookCoverImage {
+    /* display: grid;
+    justify-items: center; */
+
+}
+
+.bookCoverImage img {
+    max-width: 150px;
+}
+
+.textBookData {
+    display: grid;
+
+}
+
+.formButtons {
+    grid-column-start: 2;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.button {
+    background-color: #33bdef;
+    border-radius: 28px;
+    border: 1px solid #057fd0;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 12px;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #5b6178;
+}
+
+.button:hover {
+    background-color: #019ad2;
+}
+
+.button:active {
+    position: relative;
+    top: 1px;
+}
+
+.add-button,
+.save-button {
+    background-color: #74ad5a;
+    border-radius: 28px;
+    border: 1px solid #3b6e22;
+}
+
+.add-button:hover,
+.save-button:hover {
+    background-color: #68a54b;
+}
+
+.save-button{
+    margin-left: 10px;
+}
+
+.cancel-button {
+    background-color: #d0451b;
+    border-radius: 28px;
+    border: 1px solid #942911;
+}
+
+.cancel-button:hover {
+    background-color: #bc3315;
 }

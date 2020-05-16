@@ -1,5 +1,7 @@
 const root = document.getElementById('root');
 
+const INPUT_FIELD_CLASS = 'form-input';
+
 let listOfBooks = []
 
 root.addEventListener('click', onRootEvent);
@@ -8,13 +10,17 @@ init();
 
 function init() {
     listOfBooks = getState('books');
+
+    const bookdDetails = document.createElement('div');
+    const booksList = document.createElement('div');
+
+    bookdDetails.id = 'book-details';
+    booksList.id = 'book-list'
+
+    root.appendChild(booksList)
+    root.appendChild(bookdDetails)
+
     renderBooksList(listOfBooks);
-
-    const div = document.createElement('div');
-
-    div.id = 'book-details';
-
-    root.appendChild(div)
 }
 
 function getState(keyName = 'books') {
@@ -31,16 +37,11 @@ function generateBookListItem(data) {
     const BOOK_ITEM_LINK_CLASS = 'book-list-item';
     const EDIT_BUTTON_CLASS = 'button-edit';
     const BOOK_LIST_ITEM = 'book-list-item';
-
     const bookItemLink = `<a href="?id=${data.id}#preview" class="${BOOK_ITEM_LINK_CLASS}">${data.title}</a>`
-    const editButton = `<a href="?id=${data.id}#edit" class="${EDIT_BUTTON_CLASS}">Edit</a>`
-
+    const editButton = `<a href="?id=${data.id}#edit" class="button ${EDIT_BUTTON_CLASS}">Edit</a>`
     const bookListItem = `<div class="${BOOK_LIST_ITEM}">${bookItemLink} ${editButton}</div>`
 
-
     return bookListItem;
-
-
 }
 
 function renderBooksList(data) {
@@ -50,127 +51,179 @@ function renderBooksList(data) {
     for (let bookInfo of data) {
         node.innerHTML += generateBookListItem(bookInfo);
     }
-
     node.innerHTML += addButton;
 
+    const booksListContainer = document.getElementById('book-list')
+    booksListContainer.innerHTML = node.innerHTML
 
-    node.classList.add('book-list')
-    root.appendChild(node);
-
-    return root;
+    return booksListContainer;
 }
 
 
 
-function renderBookDetails(data, id, isDisbaled = true, empty = false) {
+function renderBookDetails(data, id) {
     const bookDetailsContainer = document.getElementById('book-details');
-    const BOOK_FORM_ID = 'book-details-form';
-    console.log(data)
-    console.log(id)
-    const dataKeys = Object.keys(data[id]);
-    let bookDetailsFormFields = ``;
-
-    for (let i of dataKeys) {
-        bookDetailsFormFields += generateBookDetails(data[id], i, isDisbaled, empty)
-    }
-
-    const saveButton = `<button type="submit" form="${BOOK_FORM_ID}" 
-                            class="button save-button" 
-                            value="Submit">Save</button>`;
-
-    const cancelButton = `<button class="button cancel-button" value="Cancel">Cancel</button>`;
-
-    const displayButtons = !isDisbaled ? cancelButton + saveButton : '';
-
-    bookDetailsContainer.innerHTML = `<form id="${BOOK_FORM_ID}">${bookDetailsFormFields} ${displayButtons}</form>`;
-
+    bookDetailsContainer.innerHTML = formTemplate;
+    !data ? generateBookDetails() : generateBookDetails(data[id])
 
 }
 
-function generateBookDetails(data, key, isDisabled = true, empty = false) {
-    const disabled = isDisabled ? 'disabled' : '';
-    const dataField = `<input type="text" class="book-details-field" name="{{name}}" 
-                        placeholder={{placeholderName}} 
-                        value="{{value}}" ${disabled}>`;
-    const dataImage = `<img class="book-image" src="{{value}}" alt="book-cover">`
-    const dataId = `<input type="hidden" name="{{name}}" value="{{value}}">`
-
+function generateBookDetails(data) {
+    const form = document.getElementById('bookForm');
+    const bookImage = document.getElementById('bookImage');
+    const titileInput = document.getElementById('titileInput');
+    const idInput = document.getElementById('idInput');
+    const authorInput = document.getElementById('authorInput');
+    const plotInput = document.getElementById('plotInput');
+    const imageInput = document.getElementById('imageInput');
+    const formButtons = document.querySelector('.formButtons');
 
     switch (true) {
-        case key === 'id':
-            return dataId.replace('{{value}}', data[key])
-                .replace('{{name}}', key);
+        case !data:
+            bookImage.parentElement.remove();
+            form.classList.add('add-mode');
+            titileInput.focus();
 
-        case empty:
-            console.log(empty)
-            return dataField.replace('{{name}}', key)
-                .replace('{{placeholderName}}', key)
-                .replace('{{value}}', '');
+            return form;
 
-        case key === 'image' && !disabled:
-            return dataField.replace('{{value}}', data[key])
-                .replace('{{name}}', key);
+        case location.hash === '#preview':
+            bookImage.src = data.image;
+            idInput.value = data.id;
+            titileInput.value = data.title;
+            authorInput.value = data.author;
+            plotInput.value = data.plot;
+            imageInput.value = data.image;
+            disableForm(form);
 
-        case key === 'image':
-            return dataImage.replace('{{value}}', data[key]);
+            formButtons.remove()
+            break;
 
         default:
-
-            return dataField.replace('{{value}}', data[key])
-                .replace('{{name}}', key);
+            bookImage.src = data.image;
+            idInput.value = data.id;
+            titileInput.value = data.title;
+            authorInput.value = data.author;
+            plotInput.value = data.plot;
+            imageInput.value = data.image;
     }
+}
+
+function disableForm(form) {
+    let elements = form.elements;
+    for (let i = 0, len = elements.length; i < len; ++i) {
+        elements[i].disabled = true;
+    }
+}
+
+const state = {
+    page: ''
+};
+
+window.addEventListener('popstate', renderData)
+
+function renderData() {
+    let urlParams;
+    let objectIndex;
+
+    urlParams = new URLSearchParams(location.search);
+    objectIndex = searchObjectIndex(urlParams.get('id'), listOfBooks);
+
+    switch (true) {
+        case location.hash === '#add':
+            renderBookDetails(listOfBooks, objectIndex);
+            break;
+
+        case objectIndex === -1:
+            state.page = './index.html';
+            history.pushState(state, '', state.page)
+            break;
+
+
+
+        default:
+            renderBookDetails(listOfBooks, objectIndex)
+
+    }
+
+
 }
 
 function onRootEvent(e) {
-    let getFormId;
     let objectIndex;
     let formData;
-    const state = {
-        page: ''
-    };
-    // console.log(e.target)
+
+
+    const target = e.target;
 
     switch (true) {
 
-        case e.target.classList.contains('save-button') && location.hash === '#add':
-            console.log('heheheh')
-            getFormId = e.target.closest('form').getAttribute('id');
-            formData = getFormData(getFormId);
-            formData.id = Date.now()
 
-            listOfBooks.push(formData);
-            saveState(listOfBooks);
+        case target.classList.contains('button-edit'):
+            e.preventDefault()
+
+            state.page = target.href;
+            history.pushState(state, '', state.page)
+            renderData()
 
             break;
 
-        case e.target.classList.contains('save-button'):
+        case target.classList.contains('book-list-item'):
             e.preventDefault();
-            getFormId = e.target.closest('form').getAttribute('id');
-            objectIndex = searchObjectIndex(getFormData(getFormId).id, listOfBooks);
 
-            listOfBooks[objectIndex] = getFormData(getFormId);
+            state.page = target.href;
+            history.pushState(state, '', state.page);
+
+            renderData()
+            break;
+
+        case target.classList.contains('save-button') && location.hash === '#add':
+            console.log('heheheh')
+            e.preventDefault();
+
+            formData = getFormData();
+            formData.id = Date.now()
+
+            listOfBooks.push(formData);
 
             saveState(listOfBooks);
 
-            location.hash = '#preview'
+            renderBooksList(listOfBooks);
+
+            history.back()
+
+            break;
+
+        case target.classList.contains('save-button'):
+            e.preventDefault();
+
+            objectIndex = searchObjectIndex(getFormData().id, listOfBooks);
+            listOfBooks[objectIndex] = getFormData();
+
+            saveState(listOfBooks);
+
+            renderBooksList(listOfBooks);
+
+            history.back()
+
+            setTimeout(function () {
+                alert('Book successfully updated');
+            }, 3000)
 
             break;
 
         case e.target.classList.contains('cancel-button'):
             e.preventDefault();
+
             confirm('Discard changes?') ? history.back() : '';
-
-
-            console.log('canceled')
             break;
 
         case e.target.classList.contains('add-button'):
-            state.page = location.href.split('?')[0];
-            history.pushState(state, '', `${state.page}`)
-            location.hash = '#add'
+            e.preventDefault()
 
-            renderBookDetails(listOfBooks, 0, false, true);
-            document.getElementById('book-details-form').querySelector('[name=title]').focus();
+            state.page = './index.html#add';
+            history.pushState(state, '', state.page)
+
+            renderData();
             break;
 
         default:
@@ -184,48 +237,83 @@ function searchObjectIndex(key, array) {
     return bookObjectIndex;
 }
 
-function getFormData(formId) {
-
-    const form = document.getElementById(formId);
+function getFormData() {
+    const titileInput = document.getElementById('titileInput');
+    const idInput = document.getElementById('idInput');
+    const authorInput = document.getElementById('authorInput');
+    const plotInput = document.getElementById('plotInput');
+    const imageInput = document.getElementById('imageInput');
 
     return {
-        id: Number(form.querySelector('[name=id]').value),
-        title: form.querySelector('[name=title]').value,
-        author: form.querySelector('[name=author]').value,
-        image: form.querySelector('[name=image]').value,
-        plot: form.querySelector('[name=plot]').value
+        id: Number(idInput.value),
+        title: titileInput.value,
+        author: authorInput.value,
+        image: imageInput.value,
+        plot: plotInput.value
     }
 }
 
 
-function hash_changed() {
-    const data = location.hash;
-    const bookDetailsContainer = document.getElementById('book-details');
+// function hash_changed() {
+//     const data = location.hash;
+//     const bookDetailsContainer = document.getElementById('book-details');
 
-    const urlParams = new URLSearchParams(location.search);
-    const objectIndex = searchObjectIndex(urlParams.get('id'), listOfBooks);
+//     const urlParams = new URLSearchParams(location.search);
+//     const objectIndex = searchObjectIndex(urlParams.get('id'), listOfBooks);
 
 
-    switch (true) {
-        case data === '#preview':
-            renderBookDetails(listOfBooks, objectIndex);
+//     switch (true) {
+//         case data === '#preview':
+//             // renderBookDetails(listOfBooks, objectIndex);
 
-            break;
-        case data === '#edit':
-            renderBookDetails(listOfBooks, objectIndex, false);
-            document.getElementById('book-details-form').querySelector('[name=title]').focus();
+//             break;
+//         case data === '#edit':
+//             // console.log(objectIndex)
+//             console.log('sajgfhdkjsagf')
+//             // renderBookDetails(listOfBooks, objectIndex);
 
-            break;
+//             break;
 
-        case data === '#add':
-            renderBookDetails(listOfBooks, 0, false, true);
-            document.getElementById('book-details-form').querySelector('[name=title]').focus();
-            break;
+//         case data === '#add':
+//             // renderBookDetails(listOfBooks, 0, false, true);
+//             // document.getElementById('book-details-form').querySelector('[name=title]').focus();
+//             break;
 
-        default:
-            bookDetailsContainer.innerHTML = `Any book selected`;
-    }
-}
+//         default:
+//             bookDetailsContainer.innerHTML = `Any book selected`;
+//     }
+// }
 
-window.addEventListener('hashchange', hash_changed)
-window.addEventListener('load', hash_changed)
+// window.addEventListener('hashchange', hash_changed)
+window.addEventListener('load', renderData)
+
+
+const formTemplate = `
+<form id="bookForm" class="book-form">
+    <div class="bookCoverImage">
+      <img id="bookImage"
+        src=""
+        alt="Book Cover"></div>
+    <div class="textBookData">
+      <input type="hidden" id="idInput">
+
+      <label for="titileInput">Title</label>
+      <input class="${INPUT_FIELD_CLASS}" type="text" placeholder="Title" id="titileInput" required>
+
+      <label for="authorInput">Author</label>
+      <input class="${INPUT_FIELD_CLASS}" type="text" placeholder="Author" id="authorInput" required>
+
+      <label for="plotInput">Plot</label>
+      <textarea class="${INPUT_FIELD_CLASS}" placeholder="Plot" id="plotInput" required></textarea>
+
+      <label for="imageInput">Cover</label>
+      <input class="${INPUT_FIELD_CLASS}" type="text" placeholder="Cover URL" id="imageInput" required>
+    </div>
+
+    <div class="formButtons">
+      <button class="button cancel-button" value="Cancel">Cancel</button>
+      <button type="submit" form="bookForm" class="button save-button" value="Submit">Save</button>
+    </div>
+
+  </form>
+`

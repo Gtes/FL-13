@@ -307,7 +307,7 @@ const formTemplate = `
       <textarea class="${INPUT_FIELD_CLASS}" placeholder="Plot" id="plotInput" required></textarea>
 
       <label for="imageInput">Cover</label>
-      <input class="${INPUT_FIELD_CLASS}" type="text" placeholder="Cover URL" id="imageInput" required>
+      <input class="${INPUT_FIELD_CLASS}" type="url" placeholder="Cover URL" id="imageInput" required>
     </div>
 
     <div class="formButtons">

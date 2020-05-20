@@ -1,0 +1,75 @@
+function Student(data) {
+    this.getName = () => data.name;
+    this.getEmail = () => data.email;
+
+    const homeworkResults = [];
+
+    this.addHomeworkResult = (topic, success) => {
+        homeworkResults.push({
+            topic: topic,
+            success: success
+        })
+    }
+
+    this.getHomeworkResults = () => homeworkResults;
+}
+
+function FrontendLab(list, fails) {
+    const studentsList = createStudents(list);
+
+    let failedHomeworksLimit = fails;
+
+
+    function createStudents(data) {
+        const studentsList = [];
+
+        for (let i of data) {
+
+            studentsList.push(new Student(i))
+        }
+        return studentsList;
+    }
+
+    this.addHomeworkResults = function (data) {
+        for (let i = 0; i < data.results.length; i += 1) {
+            const findStudent = studentsList.find(student => {
+                return student.getEmail() === data.results[i].email;
+            })
+
+            return findStudent.addHomeworkResult(data.topic, data.results[i].success);
+        }
+
+    }
+
+    this.printStudentsList = function () {
+        for (let student of studentsList) {
+            console.log(`name: ${student.getName()}, email: ${student.getEmail()}`);
+            console.log(student.getHomeworkResults());
+        }
+    }
+
+    this.printStudentsEligibleForTest = function () {
+        for (let student of studentsList) {
+            let isEligibleForTest = 0;
+
+            for (let i of student.getHomeworkResults()) {
+                isEligibleForTest += i.success;
+            }
+
+            if (isEligibleForTest >= failedHomeworksLimit) {
+                console.log(`name: ${student.getName()}, email: ${student.getEmail()}`);
+            }
+        }
+    }
+}
+
+//just in case
+
+// const student1 = new Student({
+//     name: 'John',
+//     email: 'john@gmail.com'
+// })
+
+// const lab = new FrontendLab(listOfStudents, 3)
+
+// lab.addHomeworkResults(homeworkResults[0])

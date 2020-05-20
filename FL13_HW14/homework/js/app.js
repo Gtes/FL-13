@@ -36,7 +36,7 @@ function FrontendLab(list, fails) {
                 return student.getEmail() === data.results[i].email;
             })
 
-            return findStudent.addHomeworkResult(data.topic, data.results[i].success);
+            findStudent.addHomeworkResult(data.topic, data.results[i].success);
         }
 
     }
@@ -50,21 +50,21 @@ function FrontendLab(list, fails) {
 
     this.printStudentsEligibleForTest = function () {
         for (let student of studentsList) {
-            let isEligibleForTest = 0;
+            let failsCounter = 0;
 
             for (let i of student.getHomeworkResults()) {
-                isEligibleForTest += i.success;
+                !i.success ? failsCounter += 1 : failsCounter;
             }
 
-            if (isEligibleForTest >= failedHomeworksLimit) {
+            if (failsCounter <= failedHomeworksLimit) {
                 console.log(`name: ${student.getName()}, email: ${student.getEmail()}`);
             }
         }
     }
 }
 
-//just in case
 
+//just in case
 // const student1 = new Student({
 //     name: 'John',
 //     email: 'john@gmail.com'

@@ -14,18 +14,16 @@ function Student(data) {
     this.getHomeworkResults = () => homeworkResults;
 }
 
-function FrontendLab(list, fails) {
-    const studentsList = createStudents(list);
+function FrontendLab(listOfStudents, fails) {
+    const studentsList = createStudents(listOfStudents);
 
     let failedHomeworksLimit = fails;
-
 
     function createStudents(data) {
         const studentsList = [];
 
-        for (let i of data) {
-
-            studentsList.push(new Student(i))
+        for (let student of data) {
+            studentsList.push(new Student(student))
         }
         return studentsList;
     }
@@ -52,8 +50,8 @@ function FrontendLab(list, fails) {
         for (let student of studentsList) {
             let failsCounter = 0;
 
-            for (let i of student.getHomeworkResults()) {
-                !i.success ? failsCounter += 1 : failsCounter;
+            for (let topic of student.getHomeworkResults()) {
+                !topic.success ? failsCounter += 1 : failsCounter;
             }
 
             if (failsCounter <= failedHomeworksLimit) {

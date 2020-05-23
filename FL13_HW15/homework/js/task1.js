@@ -12,6 +12,7 @@ function assign(targetObj, ...args) {
 
 
 //just in case
+
 // const paymentsCard = {
 //     cash: '300$'
 // }

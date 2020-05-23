@@ -159,24 +159,26 @@ Object.defineProperty(Motorcycle.prototype, 'constructor', {
 
 
 
-const bimmer = new Vehicle({
-    color: 'black',
-    engine: 'v8'
-})
+//just in case
 
-const test = new Car({
-    color: 'red',
-    engine: 'v8',
-    model: 'vaz'
-});
+// const bimmer = new Vehicle({
+//     color: 'black',
+//     engine: 'v8'
+// })
 
-const motor = new Motorcycle({
-    color: 'blue',
-    engine: 'v8',
-    model: 'honda'
-})
+// const test = new Car({
+//     color: 'red',
+//     engine: 'v8',
+//     model: 'vaz'
+// });
+
+// const motor = new Motorcycle({
+//     color: 'blue',
+//     engine: 'v8',
+//     model: 'honda'
+// })
 
 
-console.log(bimmer)
-console.log(test)
-console.log(motor)
+// console.log(bimmer)
+// console.log(test)
+// console.log(motor)

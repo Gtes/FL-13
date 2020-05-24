@@ -29,12 +29,13 @@ function FrontendLab(listOfStudents, fails) {
     }
 
     this.addHomeworkResults = function (data) {
-        for (let i = 0; i < data.results.length; i += 1) {
+        data.results.forEach(result => {
             const findStudent = studentsList.find(student => {
-                return student.getEmail() === data.results[i].email;
+                return student.getEmail() === result.email;
             })
-            findStudent.addHomeworkResult(data.topic, data.results[i].success);
-        }
+
+            findStudent.addHomeworkResult(data.topic, result.success);
+        })
     }
 
     this.printStudentsList = function () {
@@ -60,7 +61,7 @@ function FrontendLab(listOfStudents, fails) {
 }
 
 
-//just in case
+// just in case
 // const student1 = new Student({
 //     name: 'John',
 //     email: 'john@gmail.com'

@@ -33,10 +33,8 @@ function FrontendLab(listOfStudents, fails) {
             const findStudent = studentsList.find(student => {
                 return student.getEmail() === data.results[i].email;
             })
-
             findStudent.addHomeworkResult(data.topic, data.results[i].success);
         }
-
     }
 
     this.printStudentsList = function () {

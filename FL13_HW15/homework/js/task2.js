@@ -1,7 +1,7 @@
 function Vehicle(parameters) {
     this.timer;
 
-    this.color = parameters.color;
+    this.color = parameters.color ? parameters.color : '';
     this.engine = parameters.engine;
 
     this.maxSpeed = 70;
@@ -114,8 +114,6 @@ function Car(parameters) {
 
     this.model = parameters.model;
     this.maxSpeed = 80;
-
-    this.isPainted = false
 }
 
 Car.prototype = Object.create(Vehicle.prototype)
@@ -131,12 +129,11 @@ Car.prototype.changeColor = function (color) {
         case this.isDriving:
             return console.log('Cannot paint cars is moving!')
 
-        case this.isPainted:
-            return console.log('Cannot paint cars is painted!')
+        case this.color === color:
+            return console.log('The selected color is the same as the previous, please choose another one')
 
         default:
             this.color = color;
-            this.isPainted = true;
     }
 }
 

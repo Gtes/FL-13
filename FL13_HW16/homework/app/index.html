@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./styles/index.css">
+  <title>UserList</title>
+</head>
+
+<body>
+  <div id="app-container">
+    <h1>Manage Users App</h1>
+
+    <form id="createUserForm" action="">
+      <input type="text" class="name" placeholder="Username" name="name">
+      <input type="text" class="username" placeholder="Full Name" name="username">
+      <button id="addUserBtn">Add New User</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Username</th>
+          <th>Full Name</th>
+          <th colspan="2">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="usersList">
+
+      </tbody>
+    </table>
+  </div>
+
+  <script type="text/template" id="userTemplate">
+    <tr class="userInfo">
+      <td class="id">{{id}}</td>
+      <td><input type="text" value="{{name}}" class="name"></td>
+      <td><input type="text" value="{{username}}" class="username"></td>
+      <td><button type="button" class="updateUserButton">Update</button></td>
+      <td><button type="button" class="deleteUserBtn">Delete</button></td>
+    </tr>
+  </script>
+  <script src="./js/index.js"></script>
+
+</body>
+
+</html>

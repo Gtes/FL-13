@@ -11,6 +11,8 @@ createUserForm.addEventListener('submit', onAddNewUser)
 init();
 
 function sendRequest(method, url, body = null) {
+    const NETWORK_ERROR_MARK = 400
+
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest()
 
@@ -20,7 +22,7 @@ function sendRequest(method, url, body = null) {
         xhr.setRequestHeader('Authorization', 'admin');
 
         xhr.onload = () => {
-            if (xhr.status >= 400) {
+            if (xhr.status >= NETWORK_ERROR_MARK) {
                 reject(xhr.response)
             } else {
                 resolve(xhr.response)
@@ -85,7 +87,11 @@ function onAddNewUser(e) {
     return sendRequest('POST', baseUrl + '/users', getFormData(createUserForm)).then(() => {
             addUserBtn.disabled = false;
         })
-        .then(() => renderUsersList())
+        .then(() => {
+            renderUsersList();
+            createUserForm.reset();
+            createUserForm.querySelector('.name').focus();
+        })
         .catch(() => {
             addUserBtn.disabled = false;
         });
@@ -126,4 +132,5 @@ function generateUsersList(list) {
 
 function init() {
     renderUsersList();
+    createUserForm.querySelector('.name').focus();
 }
